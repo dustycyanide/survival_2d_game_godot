@@ -1,0 +1,81 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciyc7rymtfil6"]
+
+[ext_resource type="Texture2D" uid="uid://da7cpg5di8y3n" path="res://scenes/ability/sword_ability/sword.png" id="1_imnc0"]
+
+[sub_resource type="Animation" id="Animation_n1y7i"]
+length = 0.75
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1.68179, 1),
+"update": 0,
+"values": [0.0, -0.174533, 3.14159, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.5, 0.746719),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 5.65685, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.25, 1.25), Vector2(1, 1), Vector2(2, 2), Vector2(1, 1), Vector2(0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.75),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_0bgyh"]
+resource_name = "swing"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-0.000859957, 3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8figr"]
+_data = {
+"RESET": SubResource("Animation_n1y7i"),
+"swing": SubResource("Animation_0bgyh")
+}
+
+[node name="SwordAbility" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8figr")
+}
+autoplay = "RESET"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_imnc0")
+offset = Vector2(0, -3)
